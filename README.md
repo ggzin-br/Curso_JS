@@ -29,3 +29,28 @@ A entrada consiste apenas de três inteiros, ,  e  (-100 ≤ , ,  ≤ 100), os q
 Saída
 Imprima uma linha contendo uma carinha feliz ou triste, representando como fica o humor do povo de Westeros de acordo com as tendências climáticas.
 //
+
+---
+
+//
+Atividade-3_js:
+Ler um número inteiro N e calcular todos os seus divisores.
+
+Entrada
+O arquivo de entrada contém um valor inteiro.
+
+Saída
+Escreva todos os divisores positivos de N, um valor por linha.
+//
+
+---
+
+//
+Atividade-4_js:
+Leia 3 valores de ponto flutuante A, B e C e ordene-os em ordem decrescente, de modo que o lado A representa o maior dos 3 lados. A seguir, realize uma função para cada um dos tipos e determine o tipo de triângulo que estes três lados formam, com base nos casos indicados na imagem:
+
+EntradaA entrada contem três valores de ponto flutuante de dupla precisão A (0 < A) , B (0 < B) e C (0 < C).
+
+Saída
+Imprima todas as classificações do triângulo especificado na entrada.
+//

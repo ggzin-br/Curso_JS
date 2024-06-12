@@ -3,7 +3,6 @@ let musica = document.getElementById("musica");
 musica.play(); // Devido a configuração de segurança do navegador, pode ser instável
 
 // Documento
-let div = document.getElementById("quadrado");
 let input = document.getElementById("input");
 let resultado = document.getElementById("resultado");
 
@@ -64,7 +63,7 @@ function triangulo() {
 
     }
     else {
-        window.alert("NÃO FORMA TRIÂNGULO")
+        window.alert("NÃO FORMA TRIÂNGULO");
     }
 
             // Print
