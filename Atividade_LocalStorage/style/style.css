@@ -2,6 +2,16 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    gap: 1px;
+    gap: 0px;
+}
+
+#TimeSet {
+    width: 60px;
+}
+
+#titulo {
+    margin: 20px auto;
+    width: 230px;
+    height: 3px;
 }
 

@@ -1,17 +1,9 @@
-class Relogio {
-    constructor() {
-        this.hora = new Date().getHours();
-        this.minutos = new Date().getMinutes();
-        this.segundos = new Date().getSeconds();
-    }
+import {Relogio} from "./relogio.js"; // Essa parte foi realmente difícil
+let rel = new Relogio(-3);
 
-    relogioMan() {
-        return `${this.hora} : ${this.minutos} : ${this.segundos}`;
-    }
+let titulo = document.getElementById("titulo");
 
-
-}
-
-rel = new Relogio();
-
-document.getElementById("clockSet").innerText = rel.relogioMan();
+setTimeout(function () {
+    titulo.innerText = `Sua hora atual é ${rel.relogioAut()}`;
+    console.log("Oi");
+}, 1000);
