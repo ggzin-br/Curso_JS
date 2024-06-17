@@ -39,8 +39,6 @@ export class Relogio {
         this.hora += (this.minutos % 60 == 0) ? this.minutos / 60 : 0;
          */
 
-
-
             // Compensador de horas
             let hora;
             hora = (this.hora >= 24) ? this.hora - 24 : this.hora;
@@ -58,6 +56,5 @@ export class Relogio {
         // Retorno
         return `${hora} : ${minutos} : ${segundos}`;
     }
-
 
 }

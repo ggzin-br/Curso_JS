@@ -9,15 +9,11 @@
           crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
+
 </head>
 
 <!--Código-->
 <body>
-
-    <div class="container">
-        <p id="clockSet" style="font-weight: bold"></p>
-        <label for="TimeSet">UTC:</label><input id="TimeSet" type="number">
-    </div>
 
     <nav class="navbar navbar-light bg-light">
         <p style="font-weight: bold" id="titulo"></p>
@@ -29,23 +25,15 @@
                 <table class="table table-striped table-hover mb-0">
                     <thead>
                     <tr>
-                        <th>UTC</th>
-                        <th>HORA</th>
+                        <th><input id="UTCSet" type="datetime" placeholder="UTC"></th>
+                        <th><button class="btn btn-success" id="SetAll">Criar</button></th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                        <td>{{.Nome}}</td>
-                        <td>{{.CheckIn}}</td>
-                        <td><button class="btn btn-danger">Deletar</button></td>
-                    </tr>
+                    <tbody id="lista">
                     </tbody>
                 </table>
             </div>
         </section>
-        <div class="card-footer">
-            <a href="" class="btn btn-primary mb-2">Criar novo relógio</a>
-        </div>
     </div>
 
     <script type="module" src="../apps/app.js"></script> <!--Mudar caso não funcione no VSCode-->
