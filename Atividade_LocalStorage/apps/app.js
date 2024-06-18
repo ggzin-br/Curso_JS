@@ -1,69 +1,87 @@
 import {Relogio} from "./relogio.js"; // Essa parte foi realmente difícil
 
-// LocalStorage
-const data = localStorage;
-
+/**/
 // Horário Local
 let titulo = document.getElementById("titulo");
-
-// Input de um novo relógio
-let inputUTC = document.getElementById("UTCSet");
-let criar = document.getElementById("SetAll").addEventListener("click", criarHorario);
-
-// Gerador da Lista
-document.addEventListener("DOMContentLoaded", geradorLista);
-
-
 function horaLocal() {
     const rel = new Relogio(null);
-    
     titulo.innerText = `Sua hora atual é ${rel.relogioAut()}`;
 }
 
-function geradorLista() { // <- Cria a lista de elementos vazia
+/**/
+// Input de um novo relógio
+let inputUTC = document.getElementById("UTCSet");
+
+document.getElementById("SetAll").addEventListener("click", function () {
+    let ObjetoChave = {};
+ 
+    ObjetoChave["UTC"] = inputUTC.value;
+    localStorage.setItem("Fusos"+inputUTC.value, JSON.stringify(ObjetoChave));
+
+    window.location.reload();
+});
+
+document.getElementById("lista-apagar").addEventListener("submit", function (event) {
+    const form = document.getElementById("lista-apagar");
+    const dados = new FormData(form);
+
+    event.preventDefault(); // Isto evita envios ao carregar a páginq
+
+    const utc = dados.get("opcao"); // -> É usado o name=""
+    localStorage.removeItem("Fusos"+utc);
+
+    form.reset();
+    window.location.reload();
+});
+
+/**/
+// Lista
+document.addEventListener("DOMContentLoaded", geradorExt());
+function geradorExt() { // <- Cria a lista de elementos vazia
     for (let i = 0; i < localStorage.length; i++) {
         
         const Fuso = JSON.parse(localStorage.getItem(localStorage.key(i)));
 
         const tbody = document.getElementById("lista");
+        const select = document.getElementById("opcao")
 
         const tr = document.createElement("tr");
         const td_hora = document.createElement("td");
         const td_fuso = document.createElement("td");
-        const td_botao = document.createElement("button");
+        const option = document.createElement("option");
 
             td_hora.id = Fuso["UTC"];
             td_fuso.id = Fuso["UTC"]+"num";
             td_hora.setAttribute("type", "datetime");
             td_fuso.setAttribute("type", "number");
 
-            td_botao.setAttribute("class", "btn btn-danger");
-            td_botao.textContent = "Apagar";
+            option.setAttribute("value", Fuso["UTC"]);
+            option.textContent = Fuso["UTC"];
+
+            select.appendChild(option);
 
             tr.appendChild(td_hora);
             tr.appendChild(td_fuso);
-            tr.appendChild(td_botao);
 
             tbody.appendChild(tr);
-
     }
 }
 
-function geradorHora() {
+function horaExt() { // <- Atualiza as horas
 
-    for (let fuso in localStorage) { // -> Retorna as chaves
-    // Tenho conhecimento do erro associado ao for (..in..)
-    // No último elemento ele retorna mais que o storage :(
+    for (let i = 0; i < localStorage.length; i++) {
 
-    const Fuso = JSON.parse(localStorage.getItem(fuso));
+    const Fuso = JSON.parse(localStorage.getItem(localStorage.key(i)));
     const rel = new Relogio(parseInt(Fuso["UTC"]));
 
         document.getElementById(Fuso["UTC"]).textContent = rel.relogioMan();
         document.getElementById(Fuso["UTC"]+"num").textContent = Fuso["UTC"];
+    }
 }
 
-}
 
+/**/
+// AJAX
 function updateDinan() {
     const xhttp = new XMLHttpRequest();
     const rel = new Relogio(null);
@@ -71,23 +89,14 @@ function updateDinan() {
 
     xhttp.onload = function() { 
         horaLocal();
-        geradorHora();
+        horaExt();
     };
 
     xhttp.open("GET", "inf.txt", true);
     xhttp.send();
-
 }
 
-function criarHorario() {
-    let ObjetoChave = {};
- 
-    ObjetoChave["UTC"] = inputUTC.value;
-    data.setItem("Fusos"+inputUTC.value, JSON.stringify(ObjetoChave));
-    
-}
-
-
+/**/
 // Loop das horas
-setInterval(updateDinan, 1000);
+setInterval(updateDinan, 1);
     

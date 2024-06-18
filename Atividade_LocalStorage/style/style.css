@@ -10,3 +10,9 @@
     width: 230px;
     height: 3px;
 }
+
+#lista-apagar {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
