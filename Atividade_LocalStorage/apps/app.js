@@ -84,8 +84,6 @@ function horaExt() { // <- Atualiza as horas
 // AJAX
 function updateDinan() {
     const xhttp = new XMLHttpRequest();
-    const rel = new Relogio(null);
-    
 
     xhttp.onload = function() { 
         horaLocal();
