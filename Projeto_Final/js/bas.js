@@ -1,8 +1,5 @@
 export class Basico {
-    constructor(arg1, arg2) {
-        this.arg1 = arg1;
-        this.arg2 = arg2;
-    }
+    constructor() {}
 
     som() {
         return this.arg1 + this.arg2;
@@ -24,7 +21,7 @@ export class Basico {
         return Math.sqrt(this.arg1);
     }
 
-    porc() {
-        return this.arg1 / 100;
+    porc(arg) {
+        return arg / 100;
     }
 }

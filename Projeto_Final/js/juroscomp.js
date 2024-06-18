@@ -1,5 +1,7 @@
-export class JurosComp {
-    constructor() {this.args = 0}
+import { Basico } from "./bas.js";
+
+export class JurosComp extends Basico {
+    constructor() {super()}
 
     interface() {
         let form = document.createElement("form");
@@ -36,7 +38,7 @@ export class JurosComp {
     }
     
     calc(args) {
-        return args[0] * ( ( 1 + args[1] ) ** args[2] );
+        return ( args[0] * ( ( 1 + this.porc(args[1])) ** args[2] ) ).toFixed(2);
         // M = C * (1 + i)^t
     }
 }
