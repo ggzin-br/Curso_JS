@@ -1,7 +1,5 @@
-import { Basico } from "./bas.js";
-
-export class JurosComp extends Basico {
-    constructor() {super()}
+export class JurosComp {
+    constructor() {}
 
     interface() {
         let form = document.createElement("form");
@@ -10,13 +8,13 @@ export class JurosComp extends Basico {
         let input_capital = document.createElement("input");
         input_capital.setAttribute("class", "form-control");
         input_capital.setAttribute("type","number");
-        input_capital.setAttribute("placeholder", "Capital");
+        input_capital.setAttribute("placeholder", "Capital (R$)");
         input_capital.name = "capital";
 
         let input_taxa = document.createElement("input");
         input_taxa.setAttribute("class", "form-control");
         input_taxa.setAttribute("type","number");
-        input_taxa.setAttribute("placeholder", "Taxa");
+        input_taxa.setAttribute("placeholder", "Taxa (%)");
         input_taxa.name = "taxa";
 
         let input_tempo = document.createElement("input");
@@ -38,7 +36,7 @@ export class JurosComp extends Basico {
     }
     
     calc(args) {
-        return ( args[0] * ( ( 1 + this.porc(args[1])) ** args[2] ) ).toFixed(2);
+        return parseFloat( args[0] * ( ( 1 + ( args[1] / 100 ) ) ** args[2] ) ).toFixed(2);
         // M = C * (1 + i)^t
     }
 }

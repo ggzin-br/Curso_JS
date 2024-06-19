@@ -1,6 +1,7 @@
 import { JurosComp } from "./juroscomp.js";
 import { JurosSimples } from "./jurossimples.js";
-import { Basico } from "./bas.js";
+import { Media } from "./media.js";
+import { Calc } from "./calc.js";
 
 let espaco = document.getElementById("espaco");
 
@@ -15,6 +16,16 @@ const interfaces = { // Objeto-Chave para uma execução mais enchuta
         const inst = new JurosSimples();
         espaco.appendChild(inst.interface());
     }
+    ,
+    "M": () => {
+        const inst = new Media();
+        espaco.appendChild(inst.interface());
+    }
+    ,
+    "CALC": () => {
+        const inst = new Calc();
+        espaco.appendChild(inst.interface());
+    }
 }
 const execs = {
     "JC": (a) => {
@@ -24,6 +35,16 @@ const execs = {
     ,
     "JS": (a) => {
         const inst = new JurosSimples();
+        return inst.calc(a);
+    }
+    ,
+    "M": (a) => {
+        const inst = new Media();
+        return inst.calc(a);
+    }
+    ,
+    "CALC": (a) => {
+        const inst = new Calc();
         return inst.calc(a);
     }
 }

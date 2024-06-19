@@ -8,13 +8,13 @@ export class JurosSimples {
         let input_capital = document.createElement("input");
         input_capital.setAttribute("class", "form-control");
         input_capital.setAttribute("type","number");
-        input_capital.setAttribute("placeholder", "Capital");
+        input_capital.setAttribute("placeholder", "Capital (R$)");
         input_capital.name = "capital";
 
         let input_taxa = document.createElement("input");
         input_taxa.setAttribute("class", "form-control");
         input_taxa.setAttribute("type","number");
-        input_taxa.setAttribute("placeholder", "Taxa");
+        input_taxa.setAttribute("placeholder", "Taxa (%)");
         input_taxa.name = "taxa";
 
         let input_tempo = document.createElement("input");
@@ -36,6 +36,8 @@ export class JurosSimples {
     }
 
     calc(args) {
-        return args[0] + ( args[0] * args[1] * args[2] ); // M = C + J || J = C * i * t
+        
+        return parseFloat( args[0] + ( args[0] * ( args[1] / 100 ) * args[2] ) ).toFixed(2); 
+        // M = C + J || J = C * i * t
     }
 }
