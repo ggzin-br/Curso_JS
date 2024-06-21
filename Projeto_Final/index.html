@@ -4,31 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora Financeira</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
+
 <body>
     <h1>Calculadora Financeira</h1>
 
 		<select id="opcao">
 			<optgroup label="Calculadora Básica">
-				    <option value="CALC">	Assembly</option>
-				</optgroup>
-				<optgroup label="Finanças">
-				    <option value="JS">     Juros Simples</option>
-				    <option value="JC">   Juros Compostos</option>					
-				    <option value="M">		Média</option>
-				</optgroup>
-
-			    </select>
+				<option value="CALC">	Assembly</option>
+			</optgroup>
+			<optgroup label="Finanças">
+				<option value="JS">     Juros Simples</option>
+				<option value="JC">   Juros Compostos</option>					
+				<option value="M">		Média</option>
+			</optgroup>
+			<optgroup label="Cálculos anteriores">
+				<option value="H">	Histórico</option>
+			</optgroup>
+		</select>
 
         <div id="espaco" class="container" style="margin-top: 15px; margin-bottom: 15px;"></div>
-
 		<p id="saida">Resultado:</p>
 		
         <hr>
 
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script src="js/app.js" type="module"></script>
 </body>
+
 </html>

@@ -2,81 +2,96 @@ import { JurosComp } from "./juroscomp.js";
 import { JurosSimples } from "./jurossimples.js";
 import { Media } from "./media.js";
 import { Calc } from "./calc.js";
+import { Historico } from "./historico.js";
 
-let espaco = document.getElementById("espaco");
 
-// Carregador da interface
-const interfaces = { // Objeto-Chave para uma execução mais enchuta
-    "JC": () => {
-        const inst = new JurosComp();
-        espaco.appendChild(inst.interface());
-    }
+// Objetos
+const objs = { // Objeto-Chave para uma execução mais enchuta
+    "JC": new JurosComp()
     ,
-    "JS": () => {
-        const inst = new JurosSimples();
-        espaco.appendChild(inst.interface());
-    }
+    "JS": new JurosSimples()
     ,
-    "M": () => {
-        const inst = new Media();
-        espaco.appendChild(inst.interface());
-    }
+    "M": new Media()
     ,
-    "CALC": () => {
-        const inst = new Calc();
-        espaco.appendChild(inst.interface());
-    }
-}
-const execs = {
-    "JC": (a) => {
-        const inst = new JurosComp();
-        return inst.calc(a);
-    }
+    "CALC": new Calc()
     ,
-    "JS": (a) => {
-        const inst = new JurosSimples();
-        return inst.calc(a);
-    }
-    ,
-    "M": (a) => {
-        const inst = new Media();
-        return inst.calc(a);
-    }
-    ,
-    "CALC": (a) => {
-        const inst = new Calc();
-        return inst.calc(a);
-    }
+    "H": new Historico()
 }
 
-document.getElementById("opcao").addEventListener("change", function (event) {
+
+// Lógica da web
+$(document).ready(function () {
+
+
+// Carregador de interfaces
+$("#opcao").change(function () {
     let seletor = document.getElementById("opcao").value;
-
-    event.preventDefault();    
     
-    espaco.innerHTML = ''; // Toda vez ele limpa o conteúdo
-    interfaces[seletor]();
-
+    const xhttp = new XMLHttpRequest();
+    
+    /**/
+    xhttp.open("GET", "", true);
+    xhttp.onload = function () {
+        $("#espaco").html(objs[seletor].interface());
+    }
+    // ".append" preserva e adiciona || ".html" limpa e adiciona
+    xhttp.send();
+    /**/
+    
 });
 
-/**/
+
 // Escritor do resultado
-espaco.addEventListener("submit", function (event) { // <- o submit do form dinâmico passa para o div que agrega ele
+$("#espaco").submit( function (event) {
     event.preventDefault();
+
     let seletor = document.getElementById("opcao").value;
-    let saida = document.getElementById("saida");
-    let lista_arg = new Array();
     
     const form = document.getElementById("resultado");
     const data = new FormData(form);
+    
+    let lista_arg = new Array();
 
-    for (let [chave, resultado] of data.entries()) { // <- Iterar sobre todos os valores do objetos
-        lista_arg.push(resultado);
+    const xhttp = new XMLHttpRequest();
+
+    let ObjetoChave = { // Mapa do objeto
+                        "ENTRADA":null,
+                        "SAIDA":null
+                        };
+    
+    
+    /**/
+    for (let resultado of data.entries()) { // <- Iterar sobre todos as entradas do objeto data
+        lista_arg.push(resultado[1]); // Resgatar somente o valor
     }
 
-    saida.textContent = "";
-    saida.textContent = "Resultado: ";
-    saida.textContent = saida.textContent + execs[seletor](lista_arg); 
+    xhttp.open("GET", "", true);
+    xhttp.onload = function () { 
+        $("#saida").html(`Resultado: ${objs[seletor].calc(lista_arg)}`);
+    }
+    xhttp.send();
+
+    if (localStorage.getItem(seletor) !== null) {
+        ObjetoChave = {
+                        "ENTRADA": JSON.parse(localStorage.getItem(seletor))["ENTRADA"],
+                        "SAIDA": JSON.parse(localStorage.getItem(seletor))["SAIDA"]
+                    }
+                    ObjetoChave["ENTRADA"].push(lista_arg);
+                    ObjetoChave["SAIDA"].push(objs[seletor].calc(lista_arg));
+            
+            localStorage.setItem(seletor, JSON.stringify(ObjetoChave));
+        }
+        else {
+            ObjetoChave["ENTRADA"] = [ lista_arg ];
+            ObjetoChave["SAIDA"] = [ objs[seletor].calc(lista_arg) ];
+            
+            localStorage.setItem(seletor, JSON.stringify(ObjetoChave));
+        }
+
+    /**/ 
 
 });
 
+
+//
+});

@@ -5,23 +5,31 @@ export class JurosComp {
         let form = document.createElement("form");
         form.id = "resultado"
 
+
         let input_capital = document.createElement("input");
-        input_capital.setAttribute("class", "form-control");
-        input_capital.setAttribute("type","number");
-        input_capital.setAttribute("placeholder", "Capital (R$)");
-        input_capital.name = "capital";
+        $(input_capital).attr({
+            "class": "form-control",
+            "type": "number",
+            "placeholder": "Capital (R$)",
+            "name": "capital"
+        });
 
         let input_taxa = document.createElement("input");
-        input_taxa.setAttribute("class", "form-control");
-        input_taxa.setAttribute("type","number");
-        input_taxa.setAttribute("placeholder", "Taxa (%)");
-        input_taxa.name = "taxa";
+        $(input_taxa).attr({
+            "class": "form-control",
+            "type": "number",
+            "placeholder": "Taxa (%)",
+            "name": "taxa"
+        });
 
         let input_tempo = document.createElement("input");
-        input_tempo.setAttribute("class", "form-control");
-        input_tempo.setAttribute("type","number");
-        input_tempo.setAttribute("placeholder", "Tempo");
-        input_tempo.name = "tempo";
+        $(input_tempo).attr({
+            "class": "form-control",
+            "type": "number",
+            "placeholder": "Tempo",
+            "name" : "tempo"
+        });
+        
 
         let enviar = document.createElement("input");
         enviar.setAttribute("type", "submit");

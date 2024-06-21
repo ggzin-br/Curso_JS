@@ -5,11 +5,23 @@ export class Calc {
         form.id = "resultado"
 
         let input_tokens = document.createElement("textarea");
-        input_tokens.setAttribute("class", "form-control");
-        input_tokens.setAttribute("placeholder", "Input");
+        $(input_tokens).attr({
+            "class": "form-control",
+            "placeholder": "Input",
+            "name" : "input"
+        });
+        $(input_tokens).css({
+            "width": "100%",
+        });
 
-        input_tokens.style.width = "500px"
-        input_tokens.name = "input";
+
+        function ajustarTexto() {
+            let altura = window.innerHeight;
+            input_tokens.style.height = altura * 0.6 + "px" // 60% da tela dinamicamente
+        }
+        window.addEventListener("resize", ajustarTexto);
+        ajustarTexto();
+
 
         let enviar = document.createElement("input");
         enviar.setAttribute("type", "submit");
@@ -22,21 +34,16 @@ export class Calc {
     }
     
     calc(args) {
-        /*
-        VAR var1 1
-        VAR var2 1
-        VAR div 5
+        let tok = new Array()
+        args[0].split(";").forEach((element) => {
+            tok.push(element.replace(/[\r\n]/g, ""));
+        });
 
-        ADD var1 var2
-        MULT var1 var2
-        SQRT var1 var2 -> sqrt(var2) => var1
-        DIV var1 var2 div -> var2/div => var1
-        */
-        let tok = args[0].split("\r\n");
         let vars_ = new Array();
         let acm = new Array();
         let ret;
 
+        // Separador dos argumentos da chamada de função
         function seletor_arg(arg2) {
             arg2.forEach(args => {
                 if (!funcs[args]) { // Ele entra caso não tenha nenhuma palavra-chave
@@ -48,9 +55,12 @@ export class Calc {
                     });
             }
             }); 
-            // Retorno da variável de destino
+            // Retorno da variável de destino (1º variável)
             return arg2[1];
         }
+
+
+        // Escritor
         function consolidador(temp, arg2) {
             let primeiro = seletor_arg(arg2);
 
@@ -64,6 +74,7 @@ export class Calc {
                 acm.splice(0, acm.length);
 
         }
+
 
         const funcs = {
             "VAR": (arg2) => {

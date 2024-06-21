@@ -6,18 +6,24 @@ export class Media {
         let form = document.createElement("form");
         form.id = "resultado"
 
+
         let input_vals = document.createElement("input");
-        input_vals.setAttribute("class", "form-control");
-        input_vals.setAttribute("type","text");
-        input_vals.setAttribute("placeholder", "Valores (A B C ...)");
-        input_vals.name = "valores";
+        $(input_vals).attr({
+            "class": "form-control",
+            "type": "text",
+            "placeholder": "Valores (A B C ...)",
+            "name": "valores"
+        });
 
         let input_qtd = document.createElement("input");
-        input_qtd.setAttribute("class", "form-control");
-        input_qtd.setAttribute("type","number");
-        input_qtd.setAttribute("placeholder", "Quantidade");
-        input_qtd.name = "qtd";
+        $(input_qtd).attr({
+            "class": "form-control",
+            "type": "number",
+            "placeholder": "Quantidade",
+            "name": "qtd"
+        });
 
+        
         let enviar = document.createElement("input");
         enviar.setAttribute("type", "submit");
         enviar.setAttribute("value", "Calcular");
