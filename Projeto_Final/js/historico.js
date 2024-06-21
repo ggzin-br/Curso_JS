@@ -10,7 +10,7 @@ export class Historico {
         for (let i = 0; i < localStorage.length; i++) {
         
             let h2_titulo = document.createElement("h2");
-            $(h2_titulo).html(`<h2>${localStorage.key(i)}</h2>`);
+            $(h2_titulo).html(`${localStorage.key(i)}`);
             tbody.appendChild(h2_titulo);
 
             const historico = JSON.parse(localStorage.getItem(localStorage.key(i)));
