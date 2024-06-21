@@ -43,7 +43,7 @@ $("#opcao").change(function () {
 
 // Escritor do resultado
 $("#espaco").submit( function (event) {
-    event.preventDefault();
+    event.preventDefault(); 
 
     let seletor = document.getElementById("opcao").value;
     
@@ -66,7 +66,7 @@ $("#espaco").submit( function (event) {
     }
 
     xhttp.open("GET", "", true);
-    xhttp.onload = function () { 
+    xhttp.onload = function () {
         $("#saida").html(`Resultado: ${objs[seletor].calc(lista_arg)}`);
     }
     xhttp.send();

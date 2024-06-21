@@ -30,8 +30,6 @@ export class Historico {
         }
         table.appendChild(tbody);
 
-        $("#saida").append("");
-
         return table;
     }
     
